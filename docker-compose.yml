@@ -4,8 +4,6 @@
         build: .
         ports:
          - "49160:8080"
-        volumes:
-         - .:/usr/src/app
         depends_on:
          - mongo
       mongo:
