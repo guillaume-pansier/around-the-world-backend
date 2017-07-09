@@ -31,10 +31,10 @@ router.get('/todo/:id', function (req, res, next) {
 
 router.post('/path', function (req, res, next) {
     var path = req.body;
-    if (!(path.countries && path.countries[0].interestPoints)) {
+    if (!path.countries || !path.name) {
         res.status(400);
         res.json({
-            "error": "Invalid Data"
+            "error": "countries or name is null"
         });
     } else {
         db.paths.save(path, function (err, result) {
@@ -55,6 +55,7 @@ router.put('/path/:id', function (req, res, next) {
     console.log(path);
     if (path.countries) {
         updObj.countries = path.countries;
+        updObj.name = path.name;
     }
     if (!updObj) {
         res.status(400);
